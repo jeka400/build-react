@@ -1,17 +1,33 @@
+import ReactDOM from 'react-dom';
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { elementJSX, elementReact } from './createElement';
+import elementJS from "./createElement";
+import { elementFuncJSX, elementFuncReact, Didact, elementFuncJS } from './createElementFunction';
+import { DidactFibers, elementFibers, renderFibers } from './fibers';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// *** In index.html I've created new containers for easier access ***
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const containerJSX = document.getElementById("conJsx");
+const containerReact = document.getElementById("conReact");
+const containerJS = document.getElementById("conJs");
+
+const containerFuncJSX = document.getElementById("conFuncJsx");
+const containerFuncReact = document.getElementById("conFuncReact");
+const containerFuncJS = document.getElementById("conFuncJs");
+
+const containerFibers = document.getElementById("conFibers")
+
+// *** Render elements in DOM: ***
+
+ReactDOM.render(elementJSX, containerJSX);                // JSX
+ReactDOM.render(elementReact, containerReact);            // React
+
+containerJS.appendChild(elementJS);                       // Vanila JS
+
+
+ReactDOM.render(elementFuncJSX, containerFuncJSX);        // JSX
+ReactDOM.render(elementFuncReact, containerFuncReact);    // React
+
+Didact.renderJS(elementFuncJS, containerFuncJS);            // Vanila JS
+
+DidactFibers.renderFibers(elementFibers, containerFibers);
